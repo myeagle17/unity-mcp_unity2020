@@ -7,11 +7,12 @@ using UnityEditor;
 using UnityEngine;
 using MCPForUnity.Runtime.Helpers;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Cameras
 {
     internal static class CameraCreate
     {
-        private static readonly Dictionary<string, (string body, string aim)> Presets = new(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, (string body, string aim)> Presets = new Dictionary<string, (string body, string aim)>(StringComparer.OrdinalIgnoreCase)
         {
             ["follow"]        = ("CinemachineFollow",              "CinemachineRotationComposer"),
             ["third_person"]  = ("CinemachineThirdPersonFollow",   "CinemachineRotationComposer"),
@@ -249,3 +250,4 @@ namespace MCPForUnity.Editor.Tools.Cameras
         }
     }
 }
+#endif

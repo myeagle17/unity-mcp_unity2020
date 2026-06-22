@@ -6,6 +6,7 @@ using MCPForUnity.Editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.ProBuilder
 {
     internal static class ProBuilderSmoothing
@@ -95,3 +96,4 @@ namespace MCPForUnity.Editor.Tools.ProBuilder
         }
     }
 }
+#endif

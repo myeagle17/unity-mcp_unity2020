@@ -1,3 +1,4 @@
+#if UNITY_2021_2_OR_NEWER  // disabled on 2020.3 (depends on disabled tool namespace)
 using System;
 using MCPForUnity.Editor.Helpers;
 using MCPForUnity.Editor.Tools.Graphics;
@@ -22,3 +23,4 @@ namespace MCPForUnity.Editor.Resources.Scene
         }
     }
 }
+#endif

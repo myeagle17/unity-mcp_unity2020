@@ -13,17 +13,18 @@ using UnityEditor.PackageManager.Requests;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 using UnityEngine;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools
 {
     [McpForUnityTool("manage_packages", AutoRegister = false, Group = "core", RequiresPolling = true, PollAction = "status")]
     public static class ManagePackages
     {
         // Pending async requests keyed by job ID
-        private static readonly Dictionary<string, Request> PendingRequests = new();
+        private static readonly Dictionary<string, Request> PendingRequests = new Dictionary<string, Request>();
 
         // Pending list/search requests keyed by job ID
-        private static readonly Dictionary<string, ListRequest> PendingListRequests = new();
-        private static readonly Dictionary<string, SearchRequest> PendingSearchRequests = new();
+        private static readonly Dictionary<string, ListRequest> PendingListRequests = new Dictionary<string, ListRequest>();
+        private static readonly Dictionary<string, SearchRequest> PendingSearchRequests = new Dictionary<string, SearchRequest>();
 
         public static object HandleCommand(JObject @params)
         {
@@ -735,3 +736,4 @@ namespace MCPForUnity.Editor.Tools
         }
     }
 }
+#endif

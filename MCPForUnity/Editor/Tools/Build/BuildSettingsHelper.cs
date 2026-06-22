@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Build;
 
+#if UNITY_2021_2_OR_NEWER  // tool depends on Unity 2021.2+ APIs (disabled on 2020.3)
 namespace MCPForUnity.Editor.Tools.Build
 {
     public static class BuildSettingsHelper
@@ -66,7 +67,9 @@ namespace MCPForUnity.Editor.Tools.Build
                     case "architecture":
                         int arch = value.ToLowerInvariant() switch
                         {
-                            "x86_64" or "none" or "default" => 0,
+                            "x86_64" => 0,
+                            "none" => 0,
+                            "default" => 0,
                             "arm64" => 1,
                             "universal" => 2,
                             _ => -1
@@ -92,3 +95,4 @@ namespace MCPForUnity.Editor.Tools.Build
         };
     }
 }
+#endif

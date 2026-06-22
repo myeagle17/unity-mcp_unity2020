@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Vfx
 {
     internal static class LineWrite
@@ -187,3 +188,4 @@ namespace MCPForUnity.Editor.Tools.Vfx
         }
     }
 }
+#endif

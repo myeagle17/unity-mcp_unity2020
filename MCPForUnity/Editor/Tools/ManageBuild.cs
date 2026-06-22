@@ -1,3 +1,4 @@
+#if UNITY_2021_2_OR_NEWER  // whole tool disabled on 2020.3
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -587,3 +588,4 @@ namespace MCPForUnity.Editor.Tools
         }
     }
 }
+#endif

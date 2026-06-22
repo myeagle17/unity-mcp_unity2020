@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using MCPForUnity.Editor.Helpers;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Cameras
 {
     [McpForUnityTool("manage_camera", AutoRegister = false)]
@@ -132,3 +133,4 @@ namespace MCPForUnity.Editor.Tools.Cameras
         }
     }
 }
+#endif

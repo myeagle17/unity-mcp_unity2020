@@ -11,12 +11,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+#if UNITY_2021_2_OR_NEWER  // tool depends on Unity 2021.2+ APIs (disabled on 2020.3)
 namespace MCPForUnity.Editor.Tools
 {
     [McpForUnityTool("manage_ui", AutoRegister = false, Group = "ui")]
     public static class ManageUI
     {
-        private static readonly HashSet<string> ValidExtensions = new(StringComparer.OrdinalIgnoreCase)
+        private static readonly HashSet<string> ValidExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             ".uxml", ".uss"
         };
@@ -479,7 +480,7 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse($"No PanelSettings found at {path}");
 
             JToken settingsToken = p.GetRaw("settings");
-            if (settingsToken is not JObject settingsObj || settingsObj.Count == 0)
+            if (!(settingsToken is JObject settingsObj) || settingsObj.Count == 0)
                 return new ErrorResponse("'settings' dict is required with at least one property to update.");
 
             var changes = new List<string>();
@@ -807,7 +808,7 @@ namespace MCPForUnity.Editor.Tools
 
         // Persistent RenderTextures keyed by PanelSettings instance ID so the panel
         // renders into them automatically every frame.
-        private static readonly Dictionary<int, RenderTexture> s_panelRTs = new();
+        private static readonly Dictionary<int, RenderTexture> s_panelRTs = new Dictionary<int, RenderTexture>();
 
         // Play-mode coroutine capture state.  Only one capture is in-flight at a
         // time; concurrent render_ui calls while a capture is pending are rejected
@@ -1910,3 +1911,4 @@ namespace MCPForUnity.Editor.Tools
         }
     }
 }
+#endif

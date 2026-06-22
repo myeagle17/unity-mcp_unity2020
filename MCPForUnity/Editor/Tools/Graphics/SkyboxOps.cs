@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using MCPForUnity.Runtime.Helpers;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Graphics
 {
     internal static class SkyboxOps
@@ -495,3 +496,4 @@ namespace MCPForUnity.Editor.Tools.Graphics
         }
     }
 }
+#endif

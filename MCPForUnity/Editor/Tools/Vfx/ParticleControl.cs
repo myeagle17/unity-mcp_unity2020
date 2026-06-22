@@ -5,6 +5,7 @@ using UnityEngine;
 using MCPForUnity.Editor.Helpers;
 using MCPForUnity.Runtime.Helpers;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Vfx
 {
     internal static class ParticleControl
@@ -189,8 +190,8 @@ namespace MCPForUnity.Editor.Tools.Vfx
             float time = @params["time"]?.ToObject<float>() ?? 0f;
             int minCountRaw = @params["minCount"]?.ToObject<int>() ?? @params["count"]?.ToObject<int>() ?? 30;
             int maxCountRaw = @params["maxCount"]?.ToObject<int>() ?? @params["count"]?.ToObject<int>() ?? 30;
-            short minCount = (short)Math.Clamp(minCountRaw, 0, short.MaxValue);
-            short maxCount = (short)Math.Clamp(maxCountRaw, 0, short.MaxValue);
+            short minCount = (short)McpMath.Clamp(minCountRaw, 0, short.MaxValue);
+            short maxCount = (short)McpMath.Clamp(maxCountRaw, 0, short.MaxValue);
             int cycles = @params["cycles"]?.ToObject<int>() ?? 1;
             float interval = @params["interval"]?.ToObject<float>() ?? 0.01f;
 
@@ -229,3 +230,4 @@ namespace MCPForUnity.Editor.Tools.Vfx
         }
     }
 }
+#endif

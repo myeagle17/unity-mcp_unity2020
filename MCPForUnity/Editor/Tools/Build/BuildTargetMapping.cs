@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEditor.Build;
 
+#if UNITY_2021_2_OR_NEWER  // tool depends on Unity 2021.2+ APIs (disabled on 2020.3)
 namespace MCPForUnity.Editor.Tools.Build
 {
     public static class BuildTargetMapping
@@ -163,3 +164,4 @@ namespace MCPForUnity.Editor.Tools.Build
         }
     }
 }
+#endif

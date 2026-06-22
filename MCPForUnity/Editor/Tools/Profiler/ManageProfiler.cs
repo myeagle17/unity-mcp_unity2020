@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MCPForUnity.Editor.Helpers;
 using Newtonsoft.Json.Linq;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Profiler
 {
     [McpForUnityTool("manage_profiler", AutoRegister = false, Group = "profiling")]
@@ -83,3 +84,4 @@ namespace MCPForUnity.Editor.Tools.Profiler
         }
     }
 }
+#endif

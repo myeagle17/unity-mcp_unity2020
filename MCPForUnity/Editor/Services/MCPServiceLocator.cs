@@ -26,7 +26,11 @@ namespace MCPForUnity.Editor.Services
         public static IClientConfigurationService Client => _clientService ??= new ClientConfigurationService();
         public static IPathResolverService Paths => _pathService ??= new PathResolverService();
         public static ITestRunnerService Tests => _testRunnerService ??= new TestRunnerService();
+#if UNITY_2021_2_OR_NEWER
         public static IPackageUpdateService Updates => _packageUpdateService ??= new PackageUpdateService();
+#else
+        public static IPackageUpdateService Updates => null; // PackageUpdateService disabled on Unity 2020.3
+#endif
         public static IPlatformService Platform => _platformService ??= new PlatformService();
         public static IToolDiscoveryService ToolDiscovery => _toolDiscoveryService ??= new ToolDiscoveryService();
         public static IResourceDiscoveryService ResourceDiscovery => _resourceDiscoveryService ??= new ResourceDiscoveryService();

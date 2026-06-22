@@ -6,6 +6,7 @@ using System.Reflection;
 using MCPForUnity.Editor.Constants;
 using MCPForUnity.Editor.Helpers;
 using UnityEditor;
+using UnityEditor.UIElements; // PopupField<T> lives here on Unity 2020.3
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -326,7 +327,7 @@ namespace MCPForUnity.Editor.Windows
             var valueField = itemElement.Q<TextField>("value-field");
             valueField.value = item.Value;
 
-            var typeDropdown = itemElement.Q<DropdownField>("type-dropdown");
+            var typeDropdown = itemElement.Q<PopupField<string>>("type-dropdown");
             typeDropdown.index = (int)item.Type;
 
             // Buttons

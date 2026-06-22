@@ -6,6 +6,7 @@ using UnityEditor.Build.Reporting;
 using UnityEditor.Build;
 using MCPForUnity.Editor.Helpers;
 
+#if UNITY_2021_2_OR_NEWER  // disabled on Unity 2020.3 (non-core tool / 2021.2+ APIs)
 namespace MCPForUnity.Editor.Tools.Build
 {
     public static class BuildRunner
@@ -217,3 +218,4 @@ namespace MCPForUnity.Editor.Tools.Build
         }
     }
 }
+#endif
